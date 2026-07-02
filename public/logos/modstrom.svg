@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200" role="img" aria-label="Monochrome transparent logo">
+  <defs>
+    <clipPath id="inner-circle">
+      <circle cx="100" cy="100" r="60" />
+    </clipPath>
+  </defs>
+
+  <!-- Black outer ring: original black circle minus the original white center -->
+  <path fill="#000000" fill-rule="evenodd" d="
+    M100 0.5
+    A99.5 99.5 0 1 1 100 199.5
+    A99.5 99.5 0 1 1 100 0.5
+    Z
+    M100 40
+    A60 60 0 1 0 100 160
+    A60 60 0 1 0 100 40
+    Z" />
+
+  <!-- Original green stripe converted to black, clipped inside the transparent center -->
+  <g clip-path="url(#inner-circle)">
+    <rect x="84" y="15" width="32" height="170" transform="rotate(-45 100 100)" fill="#000000" />
+  </g>
+</svg>
