@@ -1,3 +1,5 @@
+import { assetPath } from "@/lib/basePath";
+
 /**
  * Site-wide configuration — replace all placeholder values.
  */
@@ -42,7 +44,11 @@ export const siteConfig = {
     links: [
       { label: "LinkedIn", url: "https://linkedin.com/in/jedrzejlagodzinski" },
       { label: "GitHub", url: "https://github.com/JensRay" },
-      { label: "CV", url: "/cv.pdf" },
+      {
+        label: "CV",
+        url: assetPath("/jedrzej-lagodzinski-CV.pdf"),
+        download: "Jedrzej Lagodzinski - CV.pdf",
+      },
     ],
   },
   /* Nav items */

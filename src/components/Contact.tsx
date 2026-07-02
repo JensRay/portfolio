@@ -59,8 +59,9 @@ export default function Contact() {
             <a
               key={link.label}
               href={link.url}
-              target="_blank"
-              rel="noopener noreferrer"
+              download={"download" in link ? link.download : undefined}
+              target={"download" in link ? undefined : "_blank"}
+              rel={"download" in link ? undefined : "noopener noreferrer"}
               className="group inline-flex items-center gap-1.5 text-sm font-medium text-text-secondary transition-colors hover:text-text-primary"
             >
               {link.label}
