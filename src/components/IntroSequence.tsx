@@ -1,8 +1,9 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import {
   motion,
+  useMotionValueEvent,
   useScroll,
   useTransform,
   type MotionValue,
@@ -81,6 +82,21 @@ export default function IntroSequence() {
     ["0vw", `-${(N - 1) * 100}vw`]
   );
 
+  // Which panel's symbolic image is showing — driven by plain React state
+  // instead of one useTransform per image. With N independent MotionValues
+  // all deriving opacity from the same shared scroll progress, a fast or
+  // discontinuous scroll (trackpad flick, momentum scroll) could leave one
+  // subscription's DOM update a frame behind another's, so two images'
+  // opacities briefly (or persistently, until the next scroll tick) didn't
+  // agree — the previous panel's image stayed ghosted behind the new one.
+  // A single state value updated here keeps every image in the same React
+  // commit, so at most one is ever visible.
+  const [activeIndex, setActiveIndex] = useState(0);
+  useMotionValueEvent(scrollYProgress, "change", (v) => {
+    const next = Math.min(N - 1, Math.max(0, Math.round((v / 0.85) * (N - 1))));
+    setActiveIndex((prev) => (prev === next ? prev : next));
+  });
+
   return (
     <section
       ref={containerRef}
@@ -99,10 +115,9 @@ export default function IntroSequence() {
                 panel.symbol ? (
                   <SymbolicElement
                     key={i}
-                    index={i}
                     src={panel.symbol}
                     alt={panel.symbolAlt}
-                    progress={scrollYProgress}
+                    isActive={i === activeIndex}
                   />
                 ) : null
               )}
@@ -215,49 +230,24 @@ function HeroPanel() {
 }
 
 /**
- * Single symbolic image whose opacity peaks while its panel is active.
+ * Single symbolic image, visible only while its panel is active.
  * Sits in a fixed slot — same position every panel — so elements feel
- * like they appear in "the same drawer."
+ * like they appear in "the same drawer." Crossfade is a plain CSS
+ * transition driven by the isActive prop, not a scroll-linked value.
  */
 function SymbolicElement({
-  index,
   src,
   alt,
-  progress,
+  isActive,
 }: {
-  index: number;
   src: string;
   alt: string;
-  progress: MotionValue<number>;
+  isActive: boolean;
 }) {
-  // Panels finish moving by 0.85 of progress; map symbol timing into that range.
-  const completeAt = 0.85;
-  const center = (index / (N - 1)) * completeAt;
-  const half = (completeAt / (N - 1)) / 2;
-  const isLast = index === N - 1;
-
-  // The last panel fades in and stays — it dwells while we approach Experience.
-  const opacity = useTransform(
-    progress,
-    isLast
-      ? [
-          Math.max(0, center - half * 1.1),
-          Math.max(0, center - half * 0.35),
-          1,
-        ]
-      : [
-          Math.max(0, center - half * 1.1),
-          Math.max(0, center - half * 0.35),
-          Math.min(1, center + half * 0.35),
-          Math.min(1, center + half * 1.1),
-        ],
-    isLast ? [0, 1, 1] : [0, 1, 1, 0]
-  );
-
   return (
-    <motion.div
-      style={{ opacity }}
-      className="absolute inset-0 flex items-center justify-center"
+    <div
+      className="absolute inset-0 flex items-center justify-center transition-opacity duration-500 ease-out"
+      style={{ opacity: isActive ? 1 : 0 }}
       aria-hidden="true"
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -266,7 +256,7 @@ function SymbolicElement({
         alt={alt}
         className="h-full w-auto max-w-full object-contain"
       />
-    </motion.div>
+    </div>
   );
 }
 
