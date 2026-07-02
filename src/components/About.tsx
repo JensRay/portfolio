@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { siteConfig } from "@/data/config";
+import { assetPath } from "@/lib/basePath";
 import SectionContainer from "./SectionContainer";
 
 export default function About() {
@@ -63,7 +64,7 @@ export default function About() {
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/intro/ja.png"
+              src={assetPath("/intro/ja.png")}
               alt="Portrait of Jedrzej Lagodzinski"
               className="aspect-[3/4] w-full rounded-xl object-cover"
             />

@@ -8,6 +8,7 @@ import {
   type MotionValue,
 } from "framer-motion";
 import { siteConfig } from "@/data/config";
+import { assetPath } from "@/lib/basePath";
 
 /**
  * IntroSequence — the entire opening of the page.
@@ -43,22 +44,22 @@ interface Panel {
 const panels: Panel[] = [
   {
     hero: true,
-    symbol: "/intro/ja.png",
+    symbol: assetPath("/intro/ja.png"),
     symbolAlt: "Halftone portrait of Jedrzej.",
   },
   {
     text: "Frontend, UX, and a background in social science. Different chapters, one question — how people actually use the things we make.",
-    symbol: "/intro/desired_path.png",
+    symbol: assetPath("/intro/desired_path.png"),
     symbolAlt: "Halftone desired path.",
   },
   {
     text: "Before code, a master's in music. Same goal then as now: make something people respond to.",
-    symbol: "/intro/sax.png",
+    symbol: assetPath("/intro/sax.png"),
     symbolAlt: "Halftone saxophone.",
   },
   {
     text: "Polish-born. Copenhagen-made. Most drawn to products that help people or the planet.",
-    symbol: "intro/stork.png",
+    symbol: assetPath("/intro/stork.png"),
     symbolAlt: "Stark",
   },
 ];

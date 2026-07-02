@@ -1,3 +1,5 @@
+import { assetPath } from "@/lib/basePath";
+
 export type ExperienceTag = "Frontend" | "UX" | "Full-stack" | "Graphic";
 
 /**
@@ -61,7 +63,7 @@ export type Experience = RoleEntry | ProjectEntry;
 const LOYAL_URL = "https://loyalsolutions.eu";
 const LOYAL_LABEL = "Enablment (now Loyal)";
 /** Filename in /public/logos/ matches the company spelling: enablment.svg. */
-const ENABLMENT_LOGO = "/logos/enablment.svg";
+const ENABLMENT_LOGO = assetPath("/logos/enablment.svg");
 
 /** Missing brand-color sentinel — also legitimately used by Auctionet and
  *  Studio 1506 as their real brand color. */
@@ -79,7 +81,7 @@ export const experience: RoleEntry[] = [
     id: "genbrugsguiden",
     kind: "role",
     title: "Genbrugsguiden",
-    logo: "/logos/genbrugsguiden.svg",
+    logo: assetPath("/logos/genbrugsguiden.svg"),
     role: "Product Identity & Front-end Lead",
     years: "2025–Present",
     location: "Copenhagen",
@@ -98,7 +100,7 @@ export const experience: RoleEntry[] = [
     id: "layerise",
     kind: "role",
     title: "Layerise",
-    logo: "/logos/layerise.svg",
+    logo: assetPath("/logos/layerise.svg"),
     role: "UX Designer & Frontend Developer",
     years: "2025",
     location: "Copenhagen",
@@ -132,7 +134,7 @@ export const experience: RoleEntry[] = [
         id: "modstrom",
         kind: "project",
         title: "Modstrøm",
-        logo: "/logos/modstrom.svg",
+        logo: assetPath("/logos/modstrom.svg"),
         role: "Lead Frontend Developer & UX Designer",
         subtitle: "SaaS, Sustainability — CO₂ tracking platform",
         years: "2025",
@@ -160,7 +162,7 @@ export const experience: RoleEntry[] = [
         id: "mindmymind",
         kind: "project",
         title: "MindMyMind",
-        logo: "/logos/mindmymind.svg",
+        logo: assetPath("/logos/mindmymind.svg"),
         role: "Frontend Developer",
         subtitle: "AI Therapy — Digital therapeutics startup",
         years: "2024",
@@ -188,7 +190,7 @@ export const experience: RoleEntry[] = [
         id: "brolokke",
         kind: "project",
         title: "Broløkke",
-        logo: "/logos/broloekke.svg",
+        logo: assetPath("/logos/broloekke.svg"),
         role: "Frontend Developer",
         subtitle: "Hospitality — eCommerce site for a historic estate",
         years: "2024",
@@ -202,7 +204,7 @@ export const experience: RoleEntry[] = [
         kind: "project",
         title: "B:A:M Universe",
         // Filename has colons + space; URL-encode for safe serving.
-        logo: "/logos/B%3AA%3AM%20universe.svg",
+        logo: assetPath("/logos/B%3AA%3AM%20universe.svg"),
         role: "Frontend Developer",
         subtitle: "Video, Subscription Wellness Platform",
         years: "2023",
@@ -216,7 +218,7 @@ export const experience: RoleEntry[] = [
         id: "enorra",
         kind: "project",
         title: "ENORRA_",
-        logo: "/logos/enorra_.svg",
+        logo: assetPath("/logos/enorra_.svg"),
         role: "Frontend Developer",
         subtitle: "FinTech — SaaS marketplace",
         years: "2023",
@@ -248,7 +250,7 @@ export const experience: RoleEntry[] = [
         id: "trekanten",
         kind: "project",
         title: "Trekanten",
-        logo: "/logos/trekanten.svg",
+        logo: assetPath("/logos/trekanten.svg"),
         role: "Identity & Asset Design",
         subtitle: "Fencing club — Identity & Production",
         years: "2026",
@@ -262,7 +264,7 @@ export const experience: RoleEntry[] = [
         id: "black-swan-institute",
         kind: "project",
         title: "Black Swan Institute",
-        logo: "/logos/black_swan_institute.svg",
+        logo: assetPath("/logos/black_swan_institute.svg"),
         role: "UX & Graphic Designer (Commission)",
         subtitle: "Brand commission — Color & visual direction",
         years: "2026",
@@ -276,7 +278,7 @@ export const experience: RoleEntry[] = [
         id: "wielokulturowe-liceum",
         kind: "project",
         title: "Wielokulturowe Liceum Humanistyczne im. Jacka Kuronia",
-        logo: "/logos/wielokulturowe_liceum_humanistyczne.svg",
+        logo: assetPath("/logos/wielokulturowe_liceum_humanistyczne.svg"),
         role: "Designer & Developer",
         subtitle: "Education — Digital library card",
         years: "2025",
@@ -290,7 +292,7 @@ export const experience: RoleEntry[] = [
         id: "studio-1506",
         kind: "project",
         title: "Studio 1506",
-        logo: "/logos/studio1506.svg",
+        logo: assetPath("/logos/studio1506.svg"),
         role: "Web Designer & Developer",
         subtitle: "Interior architecture — Studio website",
         years: "2024",
@@ -310,7 +312,7 @@ export const experience: RoleEntry[] = [
     id: "motionshift",
     kind: "role",
     title: "Motionshift",
-    logo: "/logos/motionshift.svg",
+    logo: assetPath("/logos/motionshift.svg"),
     role: "Frontend Developer",
     years: "2022–2023",
     location: "Copenhagen",
@@ -342,7 +344,7 @@ export const experience: RoleEntry[] = [
     id: "twentyfour",
     kind: "role",
     title: "Twentyfour",
-    logo: "/logos/twentyfour.svg",
+    logo: assetPath("/logos/twentyfour.svg"),
     role: "Junior Web Developer",
     years: "2021",
     location: "Copenhagen",
